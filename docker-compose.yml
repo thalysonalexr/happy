@@ -1,0 +1,25 @@
+version: "3.8"
+
+networks:
+  happy-network:
+    driver: bridge
+
+services:
+  happy-web:
+    build:
+      context: .
+      dockerfile: ./web/Dockerfile
+    stdin_open: true
+    container_name: happy-web
+    restart: always
+    command: yarn start
+    user: happy:happy
+    environment:
+      - NODE_ENV=development
+    env_file:
+      - .env
+    ports:
+      - "${WEB_PORT}:3000"
+    volumes:
+      - ./web:/home/happy/web
+      - ./web/node_modules:/home/happy/web/node_modules
