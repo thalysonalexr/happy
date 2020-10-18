@@ -1,0 +1,34 @@
+import { EntityRepository, Repository } from 'typeorm'
+
+import { Orphanage } from '@entities/Orphanage'
+import { CreateOrphanateDto } from '@repositories/dtos/CreateOrphanateDto'
+
+@EntityRepository(Orphanage)
+export class OrphanagesRepository extends Repository<Orphanage> {
+  async createNewOrphanage(
+    orphanageDTO: CreateOrphanateDto
+  ): Promise<Orphanage> {
+    const orphanage = new Orphanage()
+    Object.assign(orphanage, orphanageDTO)
+
+    const resulted = await this.save(orphanage)
+
+    return resulted
+  }
+
+  async getAllOrphanages(): Promise<Orphanage[]> {
+    const orphanages = await this.find({ relations: ['images'] })
+    return orphanages
+  }
+
+  async getOrphanageById(id: string): Promise<Orphanage> {
+    const orphanage = await this.findOneOrFail({
+      relations: ['images'],
+      where: {
+        id,
+      },
+    })
+
+    return orphanage
+  }
+}

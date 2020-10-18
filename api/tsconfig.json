@@ -1,0 +1,50 @@
+{
+  "compilerOptions": {
+    "noEmitOnError": true,
+    "target": "es6",
+    "module": "commonjs",
+    "lib": ["es5", "es6"],
+    "pretty": true,
+    "importHelpers": true,
+    "allowJs": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "moduleResolution": "node",
+    "removeComments": true,
+    "typeRoots": [
+      "node_modules/@types",
+      "src/@types"
+    ],
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@app/*": ["./src/app/*"],
+      "@controllers/*": ["./src/app/controllers/*"],
+      "@config/*": ["./src/config/*"],
+      "@entities/*": ["./src/app/entities/*"],
+      "@presenters/*": ["./src/app/presenters/*"],
+      "@repositories/*": ["./src/app/repositories/*"],
+      "@services/*": ["./src/services/*"],
+      "@utils/*": ["./src/utils/*"],
+    },
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*"],
+  "exclude": [
+    "node_modules",
+    "./dist"
+  ]
+}

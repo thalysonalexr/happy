@@ -23,3 +23,37 @@ services:
     volumes:
       - ./web:/home/happy/web
       - ./web/node_modules:/home/happy/web/node_modules
+
+  happy-api:
+    build:
+      context: .
+      dockerfile: ./api/Dockerfile
+    container_name: happy-api
+    restart: always
+    command: yarn dev
+    ports:
+      - "${API_PORT}:3000"
+    volumes:
+      - ./api:/home/happy/api
+      - ./api/node_modules:/home/happy/api/node_modules
+    networks:
+      - happy-network
+    links:
+      - happy-postgres
+    depends_on:
+      - happy-postgres
+
+  happy-postgres:
+    image: postgres
+    container_name: happy-postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+      - POSTGRES_DATA=/data/postgres
+    networks:
+      - happy-network
+    volumes:
+      - ./data/db/postgres:/data/postgres
+    ports:
+      - "${DB_PORT}:5432"

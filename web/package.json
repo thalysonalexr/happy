@@ -1,5 +1,6 @@
 {
-  "name": "web",
+  "name": "happy-web",
+  "description": "Web Application of project Happy",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
