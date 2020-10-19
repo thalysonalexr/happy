@@ -54,6 +54,6 @@ services:
     networks:
       - happy-network
     volumes:
-      - ./data/db/postgres:/data/postgres
+      - ./infra/db/postgres:/data/postgres
     ports:
       - "${DB_PORT}:5432"

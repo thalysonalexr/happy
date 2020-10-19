@@ -1,5 +1,6 @@
-export interface CreateOrphanateDto {
+export interface CreateOrphanageDto {
   name: string
+  whatsapp: string
   latitude: number
   longitude: number
   about: string

@@ -16,6 +16,9 @@ export class Orphanage {
   @Column({ type: 'varchar', length: 255 })
   name: string
 
+  @Column({ type: 'varchar', length: 20 })
+  whatsapp: string
+
   @Column('decimal')
   latitude: number
 

@@ -5,7 +5,8 @@
   "main": "dist/server.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development tsnd -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules,tmp --no-notify ./src/server.ts",
-    "typeorm": "tsnd ./node_modules/typeorm/cli.js",
+    "build": "babel src --extensions \".js,.ts\" --ignore \"src/db/migrations/**/*\" --out-dir dist --copy-files --no-copy-ignored",
+    "typeorm": "tsnd -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
@@ -33,6 +34,7 @@
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.10.5",
     "@babel/node": "^7.10.5",
+    "@babel/plugin-proposal-decorators": "^7.12.1",
     "@babel/preset-env": "^7.10.4",
     "@babel/preset-typescript": "^7.10.4",
     "@types/compression": "^1.7.0",

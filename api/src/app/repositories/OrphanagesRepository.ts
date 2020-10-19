@@ -1,12 +1,12 @@
 import { EntityRepository, Repository } from 'typeorm'
 
 import { Orphanage } from '@entities/Orphanage'
-import { CreateOrphanateDto } from '@repositories/dtos/CreateOrphanateDto'
+import { CreateOrphanageDto } from '@repositories/dtos/CreateOrphanageDto'
 
 @EntityRepository(Orphanage)
 export class OrphanagesRepository extends Repository<Orphanage> {
   async createNewOrphanage(
-    orphanageDTO: CreateOrphanateDto
+    orphanageDTO: CreateOrphanageDto
   ): Promise<Orphanage> {
     const orphanage = new Orphanage()
     Object.assign(orphanage, orphanageDTO)

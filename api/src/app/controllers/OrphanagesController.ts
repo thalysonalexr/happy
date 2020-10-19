@@ -9,6 +9,7 @@ export class OrphanagesController {
   static async store(req: Request, res: Response) {
     const {
       name,
+      whatsapp,
       latitude,
       longitude,
       about,
@@ -28,22 +29,24 @@ export class OrphanagesController {
 
     const data = {
       name,
+      whatsapp,
       latitude,
       longitude,
       about,
       instructions,
       opening_hours,
-      open_on_weekends,
+      open_on_weekends: open_on_weekends === 'true',
       images,
     }
 
     const schema = yup.object().shape({
-      name: yup.string().length(255).required(),
+      name: yup.string().max(255).required(),
+      whatsapp: yup.string().max(20).required(),
       latitude: yup.number().required(),
       longitude: yup.number().required(),
       about: yup.string().max(300).required(),
       instructions: yup.string().required(),
-      opening_hours: yup.string().length(255).required(),
+      opening_hours: yup.string().max(255).required(),
       open_on_weekends: yup.boolean().required(),
       images: yup.array(
         yup.object().shape({
